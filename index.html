@@ -1,221 +1,482 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="veiwport" content="width=device-width, initial-scale=1.0">
-    <title>Aura Herbals</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Aura Herbal Store</title>
+  <link rel="shortcut icon" type="image/icon" href="images/Logo.jpg"/>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
 </head>
+
 <body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <div class="brand_box">
+      <a class="navbar-brand" href="index.html" >
+        <img src="images/Logo.png" alt="#" />
+      </a>
+    </div>
+    <!-- end header section -->
+    <!-- slider section -->
+    <section class=" slider_section position-relative">
+      <div id="carouselExampleControls" class="carousel slide " data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="img-box">
+              <img src="images/Background.jpg" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end slider section -->
+  </div>
 
-<div class="header">
+  <!-- nav section -->
+
+  <section class="nav_section">
     <div class="container">
-         <div class="navbar">
-        <div class="logo">
-            <a href="index.html"><img src="images/Logo.jpg" width="125px"></a>
-        </div>
-        <nav>
-            <ul id="MenuItems">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Products</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="">Contact</a></li>
-                <li><a href="accounts.html">Account</a></li>
-            </ul>
+      <div class="custom_nav2">
+        <nav class="navbar navbar-expand custom_nav-container ">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex  flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about.html">About </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="products.html">Products</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Login</a>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+              </form>
+            </div>
+          </div>
         </nav>
-        <a href="cart.html"><img src="images/flat-shopping-cart-cartoon-wallpaper-modern-flat-design-for-shopping-online-website-layout-design-png.png" width="30px" height="30px"></a>
-        <img src="images/pngtree-menu-vector-icon-png-image_470444.jpg" class="menu-icon" onclick="menutoggle()">
+      </div>
     </div>
-    <div class="row">
-        <div class="col-2">
-           <h1>Welcome To Our Sanctuary Of Serenity!</h1>
-            <p>Step into our virtual oasis and discover the transformative power of holistic wellness.<br>Embrace the radiance within and let your aura shine bright with our nurturing collection of soul-nourishing treasures.</p>
-            <a href="products.html" class="btn">Explore Now &#8594;</a>
-        </div>
-        <div class="col-2">
-            <img src="images/Logo.jpg">
-        </div>
-    </div>
-    </div>
-</div>
+  </section>
 
-<!--------featured categories-------->
-    <div class="categories">
-        <div class="small-container">
-        <div class="row">
-            <div class="col-3">
-                <img src="images/White.jpg">
-            </div>
-            <div class="col-3">
-                <img src="images/Purple.jpg">
-            </div>
-            <div class="col-3">
-                <img src="images/White.jpg">
-            </div>
+  <!-- end nav section -->
+
+  <!-- shop section -->
+
+  <section class="shop_section layout_padding">
+    <div class="container">
+      <div class="box">
+        <div class="detail-box">
+          <h2>
+            Aura Herbals
+          </h2>
+          <p>
+            Welcome To Our Sanctuary Of Serenity!
+          </p>
         </div>
+        <div class="img-box">
+          <img src="images/shop-im.png" alt="">
         </div>
+        
+      </div>
     </div>
-<!--------featured products-------->
-    <div class="small-container">
-        <h2 class="title">Featured Products</h2>
-        <div class="row">
-            <div class="col-4">
-                <img src="images/Aura Cleanser.jpg">
-                <h4>Aura Cleanser</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>R200.00</p>
-            </div>
-             <div class="col-4">
-                <img src="images/Lucky Salts.jpg">
-                <h4>Lucky Salts</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
-                </div>
-                <p>R250.00</p>
-            </div>
-                 <div class="col-4">
-                <img src="images/Attraction Salts.jpg">
-                <h4>Attraction Salts</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>R200.00</p>
-            </div>
-                 <div class="col-4">
-                <img src="images/Proctection Salts.jpg">
-                <h4>Protection Salts</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-half-o"></i>
-                </div>
-                <p>R350.00</p>
-            </div>
+  </section>
+
+  <!-- end shop section -->
+
+  <!-- about section -->
+
+  <section class="about_section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 px-0">
+          <div class="img-box">
+            <img src="images/about.jpg" alt="">
+          </div>
         </div>
-    </div>
-<!--------Offer-------->
-    <div class="offer">
-        <div class="small-container">
-            <div class="row">
-                <div class="col-2">
-                <img src="images/Fertility kit.jpg" class="offer-img">
-                </div>
-                 <div class="col-2">
-                    <p>Exclusively Available on Aura Herbal Store</p>
-                    <h1>Fertility Kit</h1>
-                    <small>A natural solution crafted to support your journey towards conception.<br>From promoting hormone balance to nurturing productive health, each component is designed to empower and nurture your body on it's path to parenthood.<br>Embark on your fertility journey with confidence.</small>
-
-                    <br><a href="product-details-FK.html" class="btn">Buy Now &#8594;</a>
-                </div>
+        <div class="col-md-5">
+          <div class="detail-box">
+            <div class="heading_container">
+              <hr>
+              <h2>
+                About Aura Herbals
+              </h2>
             </div>
+            <p>
+              We are dedicated to promoting holistic wellness through nature's finest offerings. Specializing in organic aura cleansing salts, we provide products and services designed to help restore balance, cleanse negative energy and nurture spiritual well-being. 
+            </p>
+            <a href="about.html">
+              Read More
+            </a>
+          </div>
         </div>
+      </div>
     </div>
+  </section>
 
-<!--------Testimonial-------->
-    <div class="testimonial">
-        <div class="small-container">
-            <div class="row">
-                <div class="col-3">
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <img src="images/testim-1.jpg">
-                    </div>
-                </div>
-             <div class="col-3">
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <img src="images/testim-2.jpg">
-                    </div>
-             </div>
+  <!-- end about section -->
 
-             <div class="col-3">
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-half-o"></i>
-                        <img src="images/testim-3.jpg">
-                    </div>
-             </div>
-            </div>
+  <!-- Product section -->
+
+  <section class="product_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <hr>
+        <h2>
+          Featured Products
+        </h2>
+      </div>
+    </div>
+    <div class="container-fluid">
+
+      <div class="product_container">
+        <div class="box">
+          <img src="images/Aura Cleanser.jpg" alt="">
+          <div class="link_box">
+            <h5>
+              Aura Salts
+            </h5>
+            <p><i>Purify your space and energy.</i><br>
+              They cleanse negative energy, protect spiritually, attract good fortune, and help with relationships, jobs, and peomotions. Perfect for cleansing homes, yards, laundry, and even removing isichitho.</p>
+            <a href="">
+              Buy Now
+            </a>
+          </div>
         </div>
+        <div class="box">
+          <img src="images/Lucky Salts.jpg" alt="">
+          <div class="link_box">
+            <h5>
+              Lucky Salts
+            </h5>
+            <p><i>Ehnance your luck and attract positive energy.</i><br>
+              Perfect for bringing success, prosperity, and good fortune into your daily life.
+            </p>
+            <a href="">
+              Buy Now
+            </a>
+          </div>
+        </div>
+        <div class="box">
+          <img src="images/Attraction Salts.jpg" alt="">
+          <div class="link_box">
+            <h5>
+              Attraction Salts
+            </h5>
+            <P><i>Draw positivity and desirable opportunities.</i><br> 
+              Whether for relationships, business or for personal growth, these salts salts help you attract what your heart desires.</P>
+            <a href="">
+              Buy Now
+            </a>
+          </div>
+        </div>
+        <div class="box">
+          <img src="images/Proctection Salts.jpg" alt="">
+          <div class="link_box">
+            <h5>
+              Protection Salts
+            </h5>
+            <p><i>Shield yourself and yourself from negativity</i>.<br>
+              They provide spiritual protection, block negative energy, and promote a sense of safety and harmony.
+            </p>
+            <a href="">
+              Buy Now
+            </a>
+          </div>
+        </div>
+        <div class="box">
+          <img src="images/Fertility kit.jpg" alt="">
+          <div class="link_box">
+            <h5>
+              Fertility Tea
+            </h5>
+            <p><i>Restore balance with our Fetility Tea.</i> <br>
+               It regulates cycles, relieves period pain, balances hormones, boosts libido, and restores fertility by treating PCOS, unblocking tubes and cleansing after misarriages. 
+            </p>
+            <a href="">
+              Buy Now
+            </a>
+          </div>
+        </div>
+        <div class="box">
+          <img src="images/Lebaso.jpeg" alt="">
+          <div class="link_box">
+            <h5>
+              Lebaso la Business
+            </h5>
+            <p><i>Empower your busniness.</i><br>
+              Made to attract clients, grow your business, and boost success for commission based workers and entrepreneurs.</p>
+            <a href="">
+              Buy Now
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
 
-<!--------Footer-------->
+  <!-- end product section -->
 
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col-1">
-                    <img src="images/Logo.jpg">
-                    <p>Renew your spirit and restore balance with curated selection of aura-cleansing herbal remedies.</p>
-                </div>
-                <div class="footer-col-2">
-                    <h3>Useful Links</h3>
-                    <ul>
-                        <li>Coupons</li>
-                        <li>Blog Post</li>
-                        <li>Return Policy</li>
-                        <li>Join Affiliate</li>
-                    </ul>
-                </div>
-                <div class="footer-col-3">
-                    <h3>Follow Us</h3>
-                    <ul>
-                        <a href="https://facebook.com"><i class="fa-facebook-f"></i></a>
-                        <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
-                        <a href="https://whatsapp.com"><i class="fa-whatsapp"></i></a>
-                    </ul>
-                </div>
+
+  <!-- client section -->
+
+  <section class="client_section layout_padding-bottom">
+    <div class="container ">
+      <div class="heading_container">
+        <h2>
+          Customer Testimonials
+        </h2>
+        <hr>
+      </div>
+      <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="client_container layout_padding-top">
+              <div class="img-box">
+                <img src="images/Logo.jpg" alt="">
+              </div>
+              <div class="detail-box">
+                <p>
+                  <img src="images/left-quote.png" alt="">
+                  <span>
+                    Anonymous
+                  </span>
+                  <img src="images/right-quote.png" alt=""> <br>
+                  I met a guy at campus today, he literally came up to me and me how beautiful I am, in shorthe asked me out. and business is booming.
+                  yoh I'm gonna buy again soon soon
+                </p>
+              </div>
             </div>
+          </div>
+          <div class="carousel-item">
+            <div class="client_container layout_padding-top">
+              <div class="img-box">
+                <img src="images/Logo.jpg" alt="">
+              </div>
+              <div class="detail-box">
+                <p>
+                  <img src="images/left-quote.png" alt="">
+                  <span>
+                    Anonymous
+                  </span>
+                  <img src="images/right-quote.png" alt=""> <br>
+                  Hey Gogo I hope all is well, thank you so much for the plug the other day. I am about to get 8k from SARS which I didn't expect at all. I am definitely buying more
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="client_container layout_padding-top">
+              <div class="img-box">
+                <img src="images/Logo.jpg" alt="">
+              </div>
+              <div class="detail-box">
+                <p>
+                  <img src="images/left-quote.png" alt="">
+                  <span>
+                    Anonymous
+                  </span>
+                  <img src="images/right-quote.png" alt=""> <br>
+                  An update babes, I'm finally starting work the first of November and money loves me SOOO much. Thank you, will definitely order again.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExample2Controls" role="button" data-slide="prev">
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExample2Controls" role="button" data-slide="next">
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- end client section -->
+
+
+  <!-- contact section -->
+  <section class="contact_section layout_padding-bottom">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="offset-lg-2 col-md-10 offset-md-1">
+          <div class="heading_container">
             <hr>
-            <p class="copyright">Copyright 2024</p>
+            <h2>
+              Request A call back
+            </h2>
+          </div>
         </div>
+      </div>
+
+      <div class="layout_padding2-top">
+        <div class="row">
+          <div class="col-lg-4 offset-lg-2 col-md-5 offset-md-1">
+            <form action="">
+              <div class="contact_form-container">
+                <div>
+                  <div>
+                    <input type="text" placeholder="Full Name" />
+                  </div>
+                  <div>
+                    <input type="email" placeholder="Email" />
+                  </div>
+                  <div>
+                    <input type="text" placeholder="Phone Number" />
+                  </div>
+                  <div>
+                    <input type="text" class="message_input" placeholder="Message" />
+                  </div>
+                  <div>
+                    <button type="submit">
+                      Send
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-6 px-0">
+            <div class="map_container">
+              <div class="map-responsive"> 
+              <div id="map"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
-<!--------js for toggle menu-------->
-<script>
-    var MenuItems = document.getElementById("MenuItems");
-    MenuItems.style.maxHeight = "0px";
+  </section>
+  <!-- end contact section -->
 
-    function menutoggle(){
-        if(MenuItems.style.maxHeight == "0px")
-        {
-        MenuItems.style.maxHeight = "200px";
-        }
-        else
-        {
-        MenuItems.style.maxHeight = "0px";
-        }
-    }
 
-</script>
+   <!-- info section -->
+
+   <section class="info_section layout_padding">
+    <div class="container">
+      <div class="info_logo">
+        <h2>
+          Aura Herbals
+        </h2>
+      </div>
+      <div class="info_contact">
+        <div class="row">
+          <div class="col-md-4">
+            <a href="">
+              <img src="images/location.png" alt="">
+              <span>
+                833B Baccara Street, Montana, Pretoria
+              </span>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a href="">
+              <img src="images/call.png" alt="">
+              <span>
+                Call : 076 715 3370
+              </span>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a href="mailto:osethibelo@gmail.com">
+              <img src="images/mail.png" alt="">
+              <span>
+                osethibelo@gmail.com
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-lg-9">
+          <div class="info_form">
+            <form action="">
+              <input type="text" placeholder="Enter your email">
+              <button>
+                subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-3">
+          <div class="info_social">
+            <div>
+              <a href="">
+                <img src="images/facebook-logo-button.png" alt="">
+              </a>
+            </div>
+            <div>
+              <a href="">
+                <img src="images/twitter-logo-button.png" alt="">
+              </a>
+            </div>
+            <div>
+              <a href="">
+                <img src="images/linkedin.png" alt="">
+              </a>
+            </div>
+            <div>
+              <a href="https://www.instagram.com/pretty_aura26?igsh=MTN4NjNndDgwdnZieg==">
+                <img src="images/instagram.png" alt="">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- end info section -->
+
+
+  <!-- footer section -->
+  <section class="container-fluid footer_section">
+    <p>
+      &copy; <span id="displayYear"></span> All Rights Reserved By
+      Aura Herbals
+    </p>
+  </section>
+  <!-- footer section -->
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="js/custom.js"></script>
 
 </body>
 </html>
