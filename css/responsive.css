@@ -51,12 +51,12 @@
         margin-top: 75px;
     }
 
-    .fruit_section .fruit_container .box {
+    .product_section .product_container .box {
         flex: 0 0 47%;
         margin: 1.5%;
     }
 
-    .client_section .client_container {
+    .product_section .product_container {
         width: 100%;
     }
 
@@ -87,7 +87,7 @@
         flex-basis: 50%;
     }
 
-    .fruit_section .fruit_container .box {
+    .product_section .product_container .box {
         flex: 0 0 97%;
         margin: 3% 1.5%;
     }
