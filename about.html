@@ -1,250 +1,208 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-<head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
+  <head>
 
-  <title>Aura Herbal Store</title>
-  <link rel="shortcut icon" type="image/icon" href="images/Logo.jpg"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 
-  <!-- slider stylesheet -->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+    <title>Aura Herbal Store</title>
 
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Dosis:400,600,700|Poppins:400,600,700&display=swap" rel="stylesheet" />
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
-</head>
 
-<body class="sub_page">
-  <div class="hero_area">
-    <!-- header section strats -->
-    <div class="brand_box">
-      <a class="navbar-brand" href="index.html" >
-        <img src="images/Logo.png" alt="#" />
-      </a>
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/tooplate-main.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/flex-slider.css">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="assets/images/Aura.png" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="products.html">Products
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="about.html">About Us</a>
+              <span class="sr-only">(current)</span>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <!-- About Page Starts Here -->
+    <div class="about-page">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <div class="line-dec"></div>
+              <h1>About Us</h1>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="left-image">
+              <img src="assets/images/about.jpg" alt="">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="right-content">
+              <h4>About Aura Herbal Store</h4>
+              <p>We are dedicated to promoting holistic wellness through nature's finest offerings. Specializing in organic aura cleansing salts, we provide products and services designed to help restore balance, cleanse negative energy and nurture spiritual well-being.</p> 
+              <br>
+              <p>Each product is thoughtfully crafted to support your journey towards a more harmonous and energized life. in addition to our product range, we offer consulting services tailored to individual needs, ensuring a personalized and impactful experience.</p>
+              <br>
+              <p>At Aura Herbals, we believe in empowering individuals to embrace clarity, positivity, and renewal. Begin your path to enhanced energy and wellness with us today.</p>
+              <div class="share">
+                <h6>Find us on: <span><a href="#"><i class="fa fa-whatsapp"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-facebook"></i></a></span></h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- end header section -->
-  </div>
+    <!-- About Page Ends Here -->
 
-  <!-- nav section -->
+    <!-- Subscribe Form Starts Here -->
+    <div class="subscribe-form">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <div class="line-dec"></div>
+              <h1>Subscribe to Aura Herbals Now!</h1>
+            </div>
+          </div>
+          <div class="col-md-8 offset-md-2">
+            <div class="main-content">
+              <p>Stay up to date with our products and services.</p>
+              <div class="container">
+                <form id="subscribe" action="" method="get">
+                  <div class="row">
+                    <div class="col-md-7">
+                      <fieldset>
+                        <input name="email" type="text" class="form-control" id="email" 
+                        onfocus="if(this.value == 'Your Email...') { this.value = ''; }" 
+                    	onBlur="if(this.value == '') { this.value = 'Your Email...';}"
+                    	value="Your Email..." required="">
+                      </fieldset>
+                    </div>
+                    <div class="col-md-5">
+                      <fieldset>
+                        <button type="submit" id="form-submit" class="button">Subscribe Now!</button>
+                      </fieldset>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Subscribe Form Ends Here -->
 
-  <section class="nav_section">
-    <div class="container">
-      <div class="custom_nav2">
-        <nav class="navbar navbar-expand custom_nav-container ">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="d-flex  flex-column flex-lg-row align-items-center">
-              <ul class="navbar-nav  ">
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="about.html">About </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="products.html">Products </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Contact Us</a>
-                </li>
+    
+    <!-- Footer Starts Here -->
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="logo">
+              <img src="assets/images/Logo.png" alt="">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="footer-menu">
+              <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">How It Works ?</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
               </ul>
             </div>
           </div>
-        </nav>
-      </div>
-    </div>
-  </section>
-
-  <!-- end nav section -->
-
-  <!-- about section -->
-
-  <section class="about_section layout_padding">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-6 px-0">
-          <div class="img-box">
-            <img src="images/about.jpg" alt="">
-          </div>
-        </div>
-        <div class="col-md-5">
-          <div class="detail-box">
-            <div class="heading_container">
-              <hr>
-              <h2>
-                About Aura Herbal Store
-              </h2>
+          <div class="col-md-12">
+            <div class="social-icons">
+              <ul>
+                <li><a href="#"><i class="fa fa-whatsapp"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              </ul>
             </div>
-            <p>
-              We are dedicated to promoting holistic wellness through nature's finest offerings. Specializing in organic aura cleansing salts, we provide products and services designed to help restore balance, cleanse negative energy and nurture spiritual well-being.
-            </p>
-            <p>
-              Each product is thoughtfully crafted to support your journey towards a more harmonous and energized life. in addition to our product range, we offer consulting services tailored to individual needs, ensuring a personalized and impactful experience.
-            </p>
-            <p>
-              At Aura Herbals, we believe in empowering individuals to embrace clarity, positivity, and renewal. Begin your path to enhanced energy and wellness with us today.
-            </p>
-            
-            <a href="products.html">
-              Explore Now
-            </a>
           </div>
         </div>
       </div>
     </div>
-  </section>
+    <!-- Footer Ends Here -->
 
-  <!-- end about section -->
 
-  <!-- contact section -->
-  <section class="contact_section layout_padding-bottom">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="offset-lg-2 col-md-10 offset-md-1">
-          <div class="heading_container">
-            <hr>
-            <h2>
-              Request A call back
-            </h2>
-          </div>
-        </div>
-      </div>
-
-      <div class="layout_padding2-top">
+    <!-- Sub Footer Starts Here -->
+    <div class="sub-footer">
+      <div class="container">
         <div class="row">
-          <div class="col-lg-4 offset-lg-2 col-md-5 offset-md-1">
-            <form action="">
-              <div class="contact_form-container">
-                <div>
-                  <div>
-                    <input type="text" placeholder="Full Name" />
-                  </div>
-                  <div>
-                    <input type="email" placeholder="Email" />
-                  </div>
-                  <div>
-                    <input type="text" placeholder="Phone Number" />
-                  </div>
-                  <div>
-                    <input type="text" class="message_input" placeholder="Message" />
-                  </div>
-                  <div>
-                    <button type="submit">
-                      Send
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="col-md-6 px-0">
-            <div class="map_container">
-              <div class="map-responsive">
-                <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=833+Baccara+St+Montana+Pretoria+South+Africa" width="600" height="300" frameborder="0" style="border:0; width: 100%; height:100%" allowfullscreen></iframe>
-              </div>
+          <div class="col-md-12">
+            <div class="copyright-text">
+              <p>Copyright &copy; 2025 Aura Herbals</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  <!-- end contact section -->
-
-   <!-- info section -->
-
-   <section class="info_section layout_padding">
-    <div class="container">
-      <div class="info_logo">
-        <h2>
-          Aura Herbals
-        </h2>
-      </div>
-      <div class="info_contact">
-        <div class="row">
-          <div class="col-md-4">
-            <a href="">
-              <img src="images/location.png" alt="">
-              <span>
-                833B Baccara Street, Montana, Pretoria
-              </span>
-            </a>
-          </div>
-          <div class="col-md-4">
-            <a href="">
-              <img src="images/call.png" alt="">
-              <span>
-                Call : 076 715 3370
-              </span>
-            </a>
-          </div>
-          <div class="col-md-4">
-            <div class="info_social">
-              <div>
-                <a href="">
-                  <img src="images/facebook-logo-button.png" alt="">
-                </a>
-              </div>
-              <div>
-                <a href="">
-                  <img src="images/twitter-logo-button.png" alt="">
-                </a>
-              </div>
-              <div>
-                <a href="">
-                  <img src="images/linkedin.png" alt="">
-                </a>
-              </div>
-              <div>
-                <a href="https://www.instagram.com/pretty_aura26?igsh=MTN4NjNndDgwdnZieg==">
-                  <img src="images/instagram.png" alt="">
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        
-        
-      </div>
-
-    </div>
-  </section>
-
-  <!-- end info section -->
+    <!-- Sub Footer Ends Here -->
 
 
-  <!-- footer section -->
-  <section class="container-fluid footer_section">
-    <p>
-      &copy; <span id="displayYear"></span> All Rights Reserved By
-      Aura Herbals
-    </p>
-  </section>
-  <!-- footer section -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script type="text/javascript" src="js/custom.js"></script>
-</body>
+    <!-- Additional Scripts -->
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/owl.js"></script>
+    <script src="assets/js/isotope.js"></script>
+    <script src="assets/js/flex-slider.js"></script>
+
+
+    <script language = "text/Javascript"> 
+      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+      function clearField(t){                   //declaring the array outside of the
+      if(! cleared[t.id]){                      // function makes it static and global
+          cleared[t.id] = 1;  // you could use true and false, but that's more typing
+          t.value='';         // with more chance of typos
+          t.style.color='#fff';
+          }
+      }
+    </script>
+
+
+  </body>
 
 </html>

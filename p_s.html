@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 
-    <title>Pixie Template - Contact</title>
+    <title>Aura Herbal Store</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -20,6 +20,10 @@
     <link rel="stylesheet" href="assets/css/tooplate-main.css">
     <link rel="stylesheet" href="assets/css/owl.css">
     <link rel="stylesheet" href="assets/css/flex-slider.css">
+<!--
+Tooplate 2114 Pixie
+https://www.tooplate.com/view/2114-pixie
+-->
   </head>
 
   <body>
@@ -36,7 +40,7 @@
             <li class="nav-item">
               <a class="nav-link" href="index.html">Home</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="products.html">Products
                 <span class="sr-only">(current)</span>
               </a>
@@ -44,9 +48,8 @@
             <li class="nav-item">
               <a class="nav-link" href="about.html">About Us</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="contact.html">Contact Us</a>
-              <span class="sr-only">(current)</span>
             </li>
           </ul>
         </div>
@@ -54,72 +57,111 @@
     </nav>
 
     <!-- Page Content -->
-    <!-- About Page Starts Here -->
-    <div class="contact-page">
+    <!-- Single Starts Here -->
+    <div class="single-product">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <div class="section-heading">
               <div class="line-dec"></div>
-              <h1>Contact Us</h1>
+              <h1>Protection Salts</h1>
             </div>
           </div>
           <div class="col-md-6">
-            <div id="map">
-            		<!-- How to change your own map point
-                           1. Go to Google Maps
-                           2. Click on your location point
-                           3. Click "Share" and choose "Embed map" tab
-                           4. Copy only URL and paste it within the src="" field below
-                    -->
-
-              <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&q=833+Baccara+St+Montana+Pretoria+South+Africa" width="100%" height="500px" frameborder="0" style="border:0" allowfullscreen></iframe>
+            <div class="product-slider">
+              <div id="slider" class="flexslider">
+                <ul class="slides">
+                  <li>
+                    <img src="assets/images/Proctection Salts.jpg" />
+                  </li>
+                  <!-- items mirrored twice, total of 12 -->
+                </ul>
+              </div>
+              
             </div>
           </div>
           <div class="col-md-6">
             <div class="right-content">
-              <div class="container">
-                <form id="contact" action="" method="post">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <fieldset>
-                        <input name="name" type="text" class="form-control" id="name" placeholder="Your name..." required="">
-                      </fieldset>
-                    </div>
-                    <div class="col-md-6">
-                      <fieldset>
-                        <input name="email" type="text" class="form-control" id="email" placeholder="Your email..." required="">
-                      </fieldset>
-                    </div>
-                    <div class="col-md-12">
-                      <fieldset>
-                        <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject..." required="">
-                      </fieldset>
-                    </div>
-                    <div class="col-md-12">
-                      <fieldset>
-                        <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required=""></textarea>
-                      </fieldset>
-                    </div>
-                    <div class="col-md-12">
-                      <fieldset>
-                        <button type="submit" id="form-submit" class="button">Send Message</button>
-                      </fieldset>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="share">
-                        <h6>You can also keep in touch on: <span><a href="#"><i class="fa fa-whatsapp"></i></a><a href="#"><i class="fa fa-instagram"></i></a><a href="#"><i class="fa fa-facebook"></i></a></span></h6>
-                      </div>
-                    </div>
-                  </div>
-                </form>
+              <h4>Protection Salts</h4>
+              <h6>R350.00</h6>
+              <p>Shield yourself and yourself from negativity.
+                 <br>They provide spiritual protection, block negative energy, and promote a sense of safety and harmony.</p>
+              <span>7 left on stock</span>
+              <form action="" method="get">
+                <label for="quantity">Quantity:</label>
+                <input name="quantity" type="quantity" class="quantity-text" id="quantity" 
+                	onfocus="if(this.value == '1') { this.value = ''; }" 
+                    onBlur="if(this.value == '') { this.value = '1';}"
+                    value="1">
+                <input type="submit" class="button" value="Order Now!">
+              </form>
+              <div class="down-content">
+                <div class="share">
+                  <h6>Share: <span><a href="https://wa.me/+27767153370"><i class="fa fa-whatsapp"></i></a><a href="https://www.instagram.com/pretty_aura26?igsh=MTN4NjNndDgwdnZieg=="><i class="fa fa-instagram"></i></a><a href="https://www.facebook.com/regoratile.setibelo/"><i class="fa fa-facebook"></i></a></span></h6>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- About Page Ends Here -->
+    <!-- Single Page Ends Here -->
+
+
+    <!-- Similar Starts Here -->
+    <div class="featured-items">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <div class="line-dec"></div>
+              <h1>You May Also Like</h1>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="owl-carousel owl-theme">
+              <a href="single-product.html">
+                <div class="featured-item">
+                  <img src="assets/images/item-01.jpg" alt="Item 2">
+                  <h4>Aura Salts</h4>
+                  <h6>R200.00</h6>
+                </div>
+              </a>
+              <a href="l_c.html">
+                <div class="featured-item">
+                  <img src="assets/images/item-02.jpg" alt="Item 3">
+                  <h4>Lucky Salts</h4>
+                  <h6>R250.00</h6>
+                </div>
+              </a>
+              <a href="a_s.html">
+                <div class="featured-item">
+                  <img src="assets/images/item-03.jpg" alt="Item 4">
+                  <h4>Attraction Salts</h4>
+                  <h6>R350.00</h6>
+                </div>
+              </a>
+              <a href="f_t.html">
+                <div class="featured-item">
+                  <img src="assets/images/item-05.jpg" alt="Item 5">
+                  <h4>Fertility Tea</h4>
+                  <h6>R150.00</h6>
+                </div>
+              </a>
+              <a href="l_b.html">
+                <div class="featured-item">
+                  <img src="assets/images/item-06.jpg" alt="Item 6">
+                  <h4>Lebaso la Business</h4>
+                  <h6>R300.00</h6>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Similar Ends Here -->
+
 
     <!-- Subscribe Form Starts Here -->
     <div class="subscribe-form">
@@ -178,16 +220,16 @@
                 <li><a href="#">Help</a></li>
                 <li><a href="#">Privacy Policy</a></li>
                 <li><a href="#">How It Works ?</a></li>
-                <li><a href="#">Contact Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
               </ul>
             </div>
           </div>
           <div class="col-md-12">
             <div class="social-icons">
               <ul>
-                <li><a href="#"><i class="fa fa-whatsapp"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://wa.me/+27767153370"><i class="fa fa-whatsapp"></i></a></li>
+                <li><a href="https://www.instagram.com/pretty_aura26?igsh=MTN4NjNndDgwdnZieg=="><i class="fa fa-instagram"></i></a></li>
+                <li><a href="https://www.facebook.com/regoratile.setibelo/"><i class="fa fa-facebook"></i></a></li>
               </ul>
             </div>
           </div>
