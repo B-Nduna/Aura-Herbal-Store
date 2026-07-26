@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import {
   ShoppingBag, X, Plus, Minus, Menu,
   Phone, Instagram, Facebook, Sparkles, MessageCircle
