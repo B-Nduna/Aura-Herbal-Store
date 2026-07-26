@@ -43,8 +43,23 @@ function PetalDivider() {
   return (
     <div className="flex items-center justify-center gap-4 py-2">
       <span className="h-px w-16 sm:w-32 bg-rose-200" />
-      <Sparkles size={14} className="text-rose-300" />
+      <Sparkles size={14} className="text-rose-300 animate-soft-float" />
       <span className="h-px w-16 sm:w-32 bg-rose-200" />
+    </div>
+  );
+}
+
+function PageTransition({ children, className = "" }) {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const timeout = window.setTimeout(() => setReady(true), 40);
+    return () => window.clearTimeout(timeout);
+  }, []);
+
+  return (
+    <div className={`transition-all duration-700 ease-out ${ready ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"} ${className}`}>
+      {children}
     </div>
   );
 }
@@ -61,7 +76,7 @@ function Header({ page, setPage, cartCount, setCartOpen }) {
   return (
     <header className="sticky top-0 z-40 bg-rose-50/90 backdrop-blur border-b border-rose-100">
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <button onClick={() => go("home")} className="flex items-center gap-3">
+        <button onClick={() => go("home")} className="flex items-center gap-3 transition-all duration-300 ease-out hover:scale-[1.02] active:scale-95">
           <img src="/images/Aura.png" alt="Aura Herbal Store" className="h-14 w-auto" />
         </button>
 
@@ -70,7 +85,7 @@ function Header({ page, setPage, cartCount, setCartOpen }) {
             <button
               key={l.id}
               onClick={() => go(l.id)}
-              className={`text-xs uppercase tracking-widest pb-1 border-b transition-colors ${
+              className={`text-xs uppercase tracking-widest pb-1 border-b transition-all duration-300 ease-out ${
                 page === l.id ? "text-stone-800 border-rose-400" : "text-stone-500 border-transparent hover:text-stone-800"
               }`}
             >
@@ -80,7 +95,7 @@ function Header({ page, setPage, cartCount, setCartOpen }) {
         </nav>
 
         <div className="flex items-center gap-4">
-          <button onClick={() => setCartOpen(true)} className="relative text-stone-700 hover:text-rose-500 transition-colors" aria-label="Open cart">
+          <button onClick={() => setCartOpen(true)} className="relative text-stone-700 hover:text-rose-500 transition-all duration-300 ease-out hover:scale-110 active:scale-95" aria-label="Open cart">
             <ShoppingBag size={20} />
             {cartCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-rose-400 text-white text-[10px] font-semibold rounded-full w-4 h-4 flex items-center justify-center">
@@ -88,19 +103,19 @@ function Header({ page, setPage, cartCount, setCartOpen }) {
               </span>
             )}
           </button>
-          <button className="md:hidden text-stone-700" onClick={() => setMenuOpen((v) => !v)} aria-label="Toggle menu" aria-expanded={menuOpen}>
+          <button className="md:hidden text-stone-700 transition-all duration-300 ease-out hover:scale-110 active:scale-95" onClick={() => setMenuOpen((v) => !v)} aria-label="Toggle menu" aria-expanded={menuOpen}>
             <Menu size={22} />
           </button>
         </div>
       </div>
 
       {menuOpen && (
-        <nav className="md:hidden border-t border-rose-100 bg-white">
+        <nav className="md:hidden border-t border-rose-100 bg-white transition-all duration-300 ease-out">
           {links.map((l) => (
             <button
               key={l.id}
               onClick={() => go(l.id)}
-              className={`block w-full text-left px-6 py-4 text-sm uppercase tracking-wide border-b border-rose-50 ${
+              className={`block w-full text-left px-6 py-4 text-sm uppercase tracking-wide border-b border-rose-50 transition-all duration-300 ease-out ${
                 page === l.id ? "text-rose-500" : "text-stone-600"
               }`}
             >
@@ -115,12 +130,12 @@ function Header({ page, setPage, cartCount, setCartOpen }) {
 
 function ProductCard({ product, onAdd, added }) {
   return (
-    <div className="bg-white rounded-2xl border border-rose-100 shadow-sm hover:shadow-md transition-shadow flex flex-col overflow-hidden">
+    <div className="group bg-white rounded-2xl border border-rose-100 shadow-sm hover:shadow-xl transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.01] flex flex-col overflow-hidden card-interactive">
       <div className="aspect-[4/3] w-full overflow-hidden bg-rose-50">
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           loading="lazy"
         />
       </div>
@@ -132,7 +147,7 @@ function ProductCard({ product, onAdd, added }) {
           <span style={serif} className="text-stone-800 text-lg">{RAND(product.price)}</span>
           <button
             onClick={() => onAdd(product)}
-            className={`text-xs uppercase tracking-wide px-4 py-2.5 rounded-full border transition-colors ${
+            className={`text-xs uppercase tracking-wide px-4 py-2.5 rounded-full border transition-all duration-300 ease-out active:scale-95 ${
               added
                 ? "bg-emerald-500 border-emerald-500 text-white"
                 : "border-rose-300 text-rose-500 hover:bg-rose-400 hover:text-white hover:border-rose-400"
@@ -171,10 +186,10 @@ function HomePage({ setPage, addToCart }) {
               gentle, hand-measured rituals to fold into your everyday.
             </p>
             <div className="flex gap-4 flex-wrap">
-              <button onClick={() => setPage("products")} className="bg-stone-800 hover:bg-stone-700 text-rose-50 text-xs uppercase tracking-widest px-7 py-3.5 font-medium rounded-full transition-colors">
+              <button onClick={() => setPage("products")} className="bg-stone-800 hover:bg-stone-700 text-rose-50 text-xs uppercase tracking-widest px-7 py-3.5 font-medium rounded-full transition-all duration-300 ease-out hover:-translate-y-0.5 active:scale-95">
                 Shop the salts
               </button>
-              <button onClick={() => setPage("about")} className="border border-stone-300 hover:border-stone-800 hover:text-stone-900 text-stone-700 text-xs uppercase tracking-widest px-7 py-3.5 rounded-full transition-colors">
+              <button onClick={() => setPage("about")} className="border border-stone-300 hover:border-stone-800 hover:text-stone-900 text-stone-700 text-xs uppercase tracking-widest px-7 py-3.5 rounded-full transition-all duration-300 ease-out hover:-translate-y-0.5 active:scale-95">
                 Our practice
               </button>
             </div>
@@ -213,7 +228,7 @@ function HomePage({ setPage, addToCart }) {
               <div className="text-xs uppercase tracking-widest text-rose-400 mb-3 font-medium">Shop the collection</div>
               <h2 style={serif} className="text-3xl md:text-4xl text-stone-800">Featured Items</h2>
             </div>
-            <button onClick={() => setPage("products")} className="text-xs uppercase tracking-widest text-stone-700 border-b border-stone-800 pb-1 hover:text-rose-500 hover:border-rose-400 transition-colors">
+            <button onClick={() => setPage("products")} className="text-xs uppercase tracking-widest text-stone-700 border-b border-stone-800 pb-1 hover:text-rose-500 hover:border-rose-400 transition-all duration-300 ease-out hover:-translate-y-0.5">
               View all products
             </button>
           </div>
@@ -288,7 +303,7 @@ function AboutPage({ setPage }) {
               </li>
             ))}
           </ul>
-          <button onClick={() => setPage("contact")} className="mt-8 border border-stone-300 hover:border-stone-800 hover:text-stone-900 text-stone-700 text-xs uppercase tracking-widest px-7 py-3.5 rounded-full transition-colors">
+          <button onClick={() => setPage("contact")} className="mt-8 border border-stone-300 hover:border-stone-800 hover:text-stone-900 text-stone-700 text-xs uppercase tracking-widest px-7 py-3.5 rounded-full transition-all duration-300 ease-out hover:-translate-y-0.5 active:scale-95">
             Get in touch
           </button>
         </div>
@@ -358,7 +373,7 @@ function ContactPage({ cart, total, updateQty, removeItem, clearCart }) {
             href={orderSent.waUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white text-xs uppercase tracking-widest px-7 py-3.5 font-medium rounded-full transition-colors mb-8"
+            className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white text-xs uppercase tracking-widest px-7 py-3.5 font-medium rounded-full transition-all duration-300 ease-out hover:-translate-y-0.5 active:scale-[0.98] mb-8"
           >
             <MessageCircle size={16} /> Open WhatsApp
           </a>
@@ -408,7 +423,7 @@ function ContactPage({ cart, total, updateQty, removeItem, clearCart }) {
             />
           </div>
 
-          <button type="submit" className="w-full flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white text-xs uppercase tracking-widest px-7 py-4 font-medium rounded-full transition-colors">
+          <button type="submit" className="w-full flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white text-xs uppercase tracking-widest px-7 py-4 font-medium rounded-full transition-all duration-300 ease-out hover:-translate-y-0.5 active:scale-[0.98]">
             <MessageCircle size={16} /> Send order via WhatsApp
           </button>
           <p className="text-xs text-stone-400">No online payment is taken. Aura will confirm pricing, payment and delivery with you directly on WhatsApp.</p>
@@ -427,14 +442,14 @@ function ContactPage({ cart, total, updateQty, removeItem, clearCart }) {
                     <p className="text-xs text-stone-400">{RAND(it.price)} each</p>
                   </div>
                   <div className="flex items-center gap-2 flex-shrink-0">
-                    <button onClick={() => updateQty(it.id, it.qty - 1)} className="w-6 h-6 flex items-center justify-center border border-stone-300 rounded-full text-stone-600 hover:border-rose-400">
+                    <button onClick={() => updateQty(it.id, it.qty - 1)} className="w-6 h-6 flex items-center justify-center border border-stone-300 rounded-full text-stone-600 hover:border-rose-400 transition-all duration-300 ease-out hover:scale-110 active:scale-95">
                       <Minus size={12} />
                     </button>
                     <span className="text-sm text-stone-800 w-4 text-center">{it.qty}</span>
-                    <button onClick={() => updateQty(it.id, it.qty + 1)} className="w-6 h-6 flex items-center justify-center border border-stone-300 rounded-full text-stone-600 hover:border-rose-400">
+                    <button onClick={() => updateQty(it.id, it.qty + 1)} className="w-6 h-6 flex items-center justify-center border border-stone-300 rounded-full text-stone-600 hover:border-rose-400 transition-all duration-300 ease-out hover:scale-110 active:scale-95">
                       <Plus size={12} />
                     </button>
-                    <button onClick={() => removeItem(it.id)} className="text-stone-400 hover:text-rose-500 ml-1" aria-label={`Remove ${it.name}`}>
+                    <button onClick={() => removeItem(it.id)} className="text-stone-400 hover:text-rose-500 ml-1 transition-all duration-300 ease-out hover:scale-110 active:scale-95" aria-label={`Remove ${it.name}`}>
                       <X size={14} />
                     </button>
                   </div>
@@ -460,7 +475,7 @@ function Field({ label, name, value, onChange, error, type = "text" }) {
         name={name}
         value={value}
         onChange={onChange}
-        className={`w-full bg-white border outline-none rounded-xl px-4 py-3 text-stone-800 text-sm ${
+        className={`w-full bg-white border outline-none rounded-xl px-4 py-3 text-stone-800 text-sm transition-all duration-300 ease-out ${
           error ? "border-rose-400" : "border-stone-200 focus:border-rose-300"
         }`}
       />
@@ -477,7 +492,7 @@ function CartDrawer({ open, onClose, cart, total, updateQty, removeItem, setPage
       <div className="relative w-full max-w-sm bg-white border-l border-rose-100 h-full flex flex-col">
         <div className="flex items-center justify-between p-5 border-b border-rose-100">
           <h3 style={serif} className="text-lg text-stone-800">Your cart</h3>
-          <button onClick={onClose} className="text-stone-400 hover:text-stone-800" aria-label="Close cart"><X size={20} /></button>
+          <button onClick={onClose} className="text-stone-400 hover:text-stone-800 transition-all duration-300 ease-out hover:scale-110 active:scale-95" aria-label="Close cart"><X size={20} /></button>
         </div>
         <div className="flex-1 overflow-y-auto p-5 space-y-4">
           {cart.length === 0 ? (
@@ -489,10 +504,10 @@ function CartDrawer({ open, onClose, cart, total, updateQty, removeItem, setPage
                 <p className="text-xs text-stone-400">{RAND(it.price)} each</p>
               </div>
               <div className="flex items-center gap-2 flex-shrink-0">
-                <button onClick={() => updateQty(it.id, it.qty - 1)} className="w-6 h-6 flex items-center justify-center border border-stone-300 rounded-full text-stone-600 hover:border-rose-400"><Minus size={12} /></button>
+                <button onClick={() => updateQty(it.id, it.qty - 1)} className="w-6 h-6 flex items-center justify-center border border-stone-300 rounded-full text-stone-600 hover:border-rose-400 transition-all duration-300 ease-out hover:scale-110 active:scale-95"><Minus size={12} /></button>
                 <span className="text-sm text-stone-800 w-4 text-center">{it.qty}</span>
-                <button onClick={() => updateQty(it.id, it.qty + 1)} className="w-6 h-6 flex items-center justify-center border border-stone-300 rounded-full text-stone-600 hover:border-rose-400"><Plus size={12} /></button>
-                <button onClick={() => removeItem(it.id)} className="text-stone-400 hover:text-rose-500 ml-1" aria-label={`Remove ${it.name}`}><X size={14} /></button>
+                <button onClick={() => updateQty(it.id, it.qty + 1)} className="w-6 h-6 flex items-center justify-center border border-stone-300 rounded-full text-stone-600 hover:border-rose-400 transition-all duration-300 ease-out hover:scale-110 active:scale-95"><Plus size={12} /></button>
+                <button onClick={() => removeItem(it.id)} className="text-stone-400 hover:text-rose-500 ml-1 transition-all duration-300 ease-out hover:scale-110 active:scale-95" aria-label={`Remove ${it.name}`}><X size={14} /></button>
               </div>
             </div>
           ))}
@@ -505,7 +520,7 @@ function CartDrawer({ open, onClose, cart, total, updateQty, removeItem, setPage
           <button
             disabled={cart.length === 0}
             onClick={() => { setPage("contact"); onClose(); }}
-            className="w-full bg-stone-800 hover:bg-stone-700 disabled:bg-stone-200 disabled:text-stone-400 text-rose-50 text-xs uppercase tracking-widest px-7 py-3.5 font-medium rounded-full transition-colors"
+            className="w-full bg-stone-800 hover:bg-stone-700 disabled:bg-stone-200 disabled:text-stone-400 text-rose-50 text-xs uppercase tracking-widest px-7 py-3.5 font-medium rounded-full transition-all duration-300 ease-out hover:-translate-y-0.5 active:scale-[0.98]"
           >
             Checkout
           </button>
@@ -528,25 +543,25 @@ function Footer({ setPage }) {
             <div>
               <h4 className="text-xs uppercase tracking-widest text-rose-400 mb-4 font-medium">Explore</h4>
               {["home", "products", "about"].map((id) => (
-                <button key={id} onClick={() => setPage(id)} className="block text-sm text-stone-500 hover:text-stone-800 mb-2 capitalize">{id}</button>
+                <button key={id} onClick={() => setPage(id)} className="block text-sm text-stone-500 hover:text-stone-800 mb-2 capitalize transition-all duration-300 ease-out hover:translate-x-1">{id}</button>
               ))}
             </div>
             <div>
               <h4 className="text-xs uppercase tracking-widest text-rose-400 mb-4 font-medium">Support</h4>
-              <button onClick={() => setPage("contact")} className="block text-sm text-stone-500 hover:text-stone-800 mb-2">Contact Us</button>
+              <button onClick={() => setPage("contact")} className="block text-sm text-stone-500 hover:text-stone-800 mb-2 transition-all duration-300 ease-out hover:translate-x-1">Contact Us</button>
             </div>
           </div>
         </div>
         <div className="flex flex-wrap justify-between items-center gap-4">
           <p className="text-xs uppercase tracking-wide text-stone-400">© 2026 Aura Herbals</p>
           <div className="flex gap-3">
-            <a href={`https://wa.me/${WHATSAPP_NUMBER}`} aria-label="WhatsApp" className="w-9 h-9 rounded-full border border-rose-200 flex items-center justify-center text-stone-500 hover:text-rose-500 hover:border-rose-400 bg-white">
+            <a href={`https://wa.me/${WHATSAPP_NUMBER}`} aria-label="WhatsApp" className="w-9 h-9 rounded-full border border-rose-200 flex items-center justify-center text-stone-500 hover:text-rose-500 hover:border-rose-400 bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105">
               <Phone size={14} />
             </a>
-            <a href="https://www.instagram.com/pretty_aura26" aria-label="Instagram" className="w-9 h-9 rounded-full border border-rose-200 flex items-center justify-center text-stone-500 hover:text-rose-500 hover:border-rose-400 bg-white">
+            <a href="https://www.instagram.com/pretty_aura26" aria-label="Instagram" className="w-9 h-9 rounded-full border border-rose-200 flex items-center justify-center text-stone-500 hover:text-rose-500 hover:border-rose-400 bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105">
               <Instagram size={14} />
             </a>
-            <a href="https://www.facebook.com/regoratile.setibelo" aria-label="Facebook" className="w-9 h-9 rounded-full border border-rose-200 flex items-center justify-center text-stone-500 hover:text-rose-500 hover:border-rose-400 bg-white">
+            <a href="https://www.facebook.com/regoratile.setibelo" aria-label="Facebook" className="w-9 h-9 rounded-full border border-rose-200 flex items-center justify-center text-stone-500 hover:text-rose-500 hover:border-rose-400 bg-white transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105">
               <Facebook size={14} />
             </a>
           </div>
@@ -591,11 +606,25 @@ export default function AuraHerbalStore() {
     <div className="min-h-screen bg-white" style={sans}>
       <Header page={page} setPage={setPage} cartCount={cartCount} setCartOpen={setCartOpen} />
 
-      {page === "home" && <HomePage setPage={setPage} addToCart={addToCart} />}
-      {page === "products" && <ProductsPage cart={cart} addToCart={addToCart} />}
-      {page === "about" && <AboutPage setPage={setPage} />}
+      {page === "home" && (
+        <PageTransition key="home">
+          <HomePage setPage={setPage} addToCart={addToCart} />
+        </PageTransition>
+      )}
+      {page === "products" && (
+        <PageTransition key="products">
+          <ProductsPage cart={cart} addToCart={addToCart} />
+        </PageTransition>
+      )}
+      {page === "about" && (
+        <PageTransition key="about">
+          <AboutPage setPage={setPage} />
+        </PageTransition>
+      )}
       {page === "contact" && (
-        <ContactPage cart={cart} total={total} updateQty={updateQty} removeItem={removeItem} clearCart={clearCart} />
+        <PageTransition key="contact">
+          <ContactPage cart={cart} total={total} updateQty={updateQty} removeItem={removeItem} clearCart={clearCart} />
+        </PageTransition>
       )}
 
       <Footer setPage={setPage} />
