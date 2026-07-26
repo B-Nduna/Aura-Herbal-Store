@@ -13,12 +13,12 @@ const WHATSAPP_NUMBER = "27767153370";
 // dedicated photo yet — keeping a neutral placeholder there until one is
 // supplied.
 const PRODUCTS = [
-  { id: "aura",       name: "Aura Salts",         intent: "For cleansing",  price: 200, desc: "Our foundational blend — clears stagnant energy and resets the space around you.", image: "/Aura-Herbal-Store/images/AuraCleanser.jpg" },
-  { id: "lucky",      name: "Lucky Salts",        intent: "For luck",       price: 250, desc: "A brighter blend carried for fortune, opportunity and good timing.", image: "/Aura-Herbal-Store/images/LuckySalts.jpg" },
-  { id: "attraction", name: "Attraction Salts",   intent: "For attraction", price: 350, desc: "Warms the space you enter — for connection, charm and drawing people close.", image: "/Aura-Herbal-Store/images/ProtectionSalts.jpg" },
-  { id: "protection", name: "Protection Salts",   intent: "For protection", price: 350, desc: "A grounding blend to hold at your door or on your person for safekeeping.", image: "/Aura-Herbal-Store/images/Proctection_Salts.jpg" },
-  { id: "fertility",  name: "Fertility Tea",      intent: "For fertility",  price: 150, desc: "A gentle herbal tea steeped for nurturing, patience and new beginnings.", image: "/Aura-Herbal-Store/images/Fertility_kit.jpg" },
-  { id: "lebaso",     name: "Lebaso la Business",  intent: "For business",   price: 300, desc: "A traditional charm blend carried for growth, income and steady prosperity.", image: "/Aura-Herbal-Store/images/Lebaso.jpeg" },
+  { id: "aura",       name: "Aura Salts",         intent: "For cleansing",  price: 200, desc: "Our foundational blend — clears stagnant energy and resets the space around you.", image: `${import.meta.env.BASE_URL}images/AuraCleanser.jpg` },
+  { id: "lucky",      name: "Lucky Salts",        intent: "For luck",       price: 250, desc: "A brighter blend carried for fortune, opportunity and good timing.", image: `${import.meta.env.BASE_URL}images/LuckySalts.jpg` },
+  { id: "attraction", name: "Attraction Salts",   intent: "For attraction", price: 350, desc: "Warms the space you enter — for connection, charm and drawing people close.", image: `${import.meta.env.BASE_URL}images/ProtectionSalts.jpg` },
+  { id: "protection", name: "Protection Salts",   intent: "For protection", price: 350, desc: "A grounding blend to hold at your door or on your person for safekeeping.", image: `${import.meta.env.BASE_URL}images/Proctection_Salts.jpg` },
+  { id: "fertility",  name: "Fertility Tea",      intent: "For fertility",  price: 150, desc: "A gentle herbal tea steeped for nurturing, patience and new beginnings.", image: `${import.meta.env.BASE_URL}images/Fertility_kit.jpg` },
+  { id: "lebaso",     name: "Lebaso la Business",  intent: "For business",   price: 300, desc: "A traditional charm blend carried for growth, income and steady prosperity.", image: `${import.meta.env.BASE_URL}images/Lebaso.jpeg` },
 ];
 
 const RAND = (n) => `R${n.toFixed(2)}`;
@@ -77,7 +77,7 @@ function Header({ page, setPage, cartCount, setCartOpen }) {
     <header className="sticky top-0 z-40 bg-rose-50/90 backdrop-blur border-b border-rose-100">
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <button onClick={() => go("home")} className="flex items-center gap-3 transition-all duration-300 ease-out hover:scale-[1.02] active:scale-95">
-          <img src="/Aura-Herbal-Store/images/Aura.png" alt="Aura Herbal Store" className="h-14 w-auto" />
+          <img src={`${import.meta.env.BASE_URL}images/Aura.png`} alt="Aura Herbal Store" className="h-14 w-auto" />
         </button>
 
         <nav className="hidden md:flex gap-9">
@@ -207,7 +207,7 @@ function HomePage({ setPage, addToCart }) {
           <div className="relative">
             <div className="absolute -inset-4 bg-rose-100 rounded-[2rem] -z-10 hidden sm:block" />
             <div className="aspect-[4/3] md:aspect-square rounded-3xl overflow-hidden shadow-lg">
-              <img src="/Aura-Herbal-Store/images/AuraSalts_Family.jpg" alt="Aura Herbal Store salt jars" className="w-full h-full object-cover" />
+              <img src={`${import.meta.env.BASE_URL}images/AuraSalts_Family.jpg`} alt="Aura Herbal Store salt jars" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
@@ -277,7 +277,7 @@ function AboutPage({ setPage }) {
         <div className="relative">
           <div className="absolute -inset-4 bg-rose-50 rounded-[2rem] -z-10 hidden sm:block" />
           <div className="aspect-[4/5] rounded-3xl relative overflow-hidden shadow-lg">
-            <img src="/Aura-Herbal-Store/images/about.jpg" alt="Dried herbs used in Aura Herbal blends" className="w-full h-full object-cover" />
+            <img src={`${import.meta.env.BASE_URL}images/about.jpg`} alt="Dried herbs used in Aura Herbal blends" className="w-full h-full object-cover" />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-stone-900/70 to-transparent px-6 pt-10 pb-6 text-xs uppercase tracking-widest text-white">
               Salts, measured by hand
             </div>
@@ -536,7 +536,7 @@ function Footer({ setPage }) {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-wrap justify-between gap-10 pb-10 border-b border-rose-100 mb-7">
           <div className="max-w-xs">
-            <img src="/Aura-Herbal-Store/images/Logo.png" alt="Aura Herbal Store" className="h-14 w-auto mb-3" />
+            <img src={`${import.meta.env.BASE_URL}images/Logo.png`} alt="Aura Herbal Store" className="h-14 w-auto mb-3" />
             <p className="text-sm text-stone-500">Herbal salts and teas for cleansing, protection, attraction and prosperity — made with intention.</p>
           </div>
           <div className="flex gap-16 flex-wrap">
