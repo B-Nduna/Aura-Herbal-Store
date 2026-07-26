@@ -13,12 +13,12 @@ const WHATSAPP_NUMBER = "27767153370";
 // dedicated photo yet — keeping a neutral placeholder there until one is
 // supplied.
 const PRODUCTS = [
-  { id: "aura",       name: "Aura Salts",         intent: "For cleansing",  price: 200, desc: "Our foundational blend — clears stagnant energy and resets the space around you.", image: "/images/AuraCleanser.jpg" },
-  { id: "lucky",      name: "Lucky Salts",        intent: "For luck",       price: 250, desc: "A brighter blend carried for fortune, opportunity and good timing.", image: "/images/LuckySalts.jpg" },
-  { id: "attraction", name: "Attraction Salts",   intent: "For attraction", price: 350, desc: "Warms the space you enter — for connection, charm and drawing people close.", image: "/images/ProtectionSalts.jpg" },
-  { id: "protection", name: "Protection Salts",   intent: "For protection", price: 350, desc: "A grounding blend to hold at your door or on your person for safekeeping.", image: "/images/Proctection_Salts.jpg" },
-  { id: "fertility",  name: "Fertility Tea",      intent: "For fertility",  price: 150, desc: "A gentle herbal tea steeped for nurturing, patience and new beginnings.", image: "/images/Fertility_kit.jpg" },
-  { id: "lebaso",     name: "Lebaso la Business",  intent: "For business",   price: 300, desc: "A traditional charm blend carried for growth, income and steady prosperity.", image: "/images/Lebaso.jpeg" },
+  { id: "aura",       name: "Aura Salts",         intent: "For cleansing",  price: 200, desc: "Our foundational blend — clears stagnant energy and resets the space around you.", image: "/Aura-Herbal-Store/images/AuraCleanser.jpg" },
+  { id: "lucky",      name: "Lucky Salts",        intent: "For luck",       price: 250, desc: "A brighter blend carried for fortune, opportunity and good timing.", image: "/Aura-Herbal-Store/images/LuckySalts.jpg" },
+  { id: "attraction", name: "Attraction Salts",   intent: "For attraction", price: 350, desc: "Warms the space you enter — for connection, charm and drawing people close.", image: "/Aura-Herbal-Store/images/ProtectionSalts.jpg" },
+  { id: "protection", name: "Protection Salts",   intent: "For protection", price: 350, desc: "A grounding blend to hold at your door or on your person for safekeeping.", image: "/Aura-Herbal-Store/images/Proctection_Salts.jpg" },
+  { id: "fertility",  name: "Fertility Tea",      intent: "For fertility",  price: 150, desc: "A gentle herbal tea steeped for nurturing, patience and new beginnings.", image: "/Aura-Herbal-Store/images/Fertility_kit.jpg" },
+  { id: "lebaso",     name: "Lebaso la Business",  intent: "For business",   price: 300, desc: "A traditional charm blend carried for growth, income and steady prosperity.", image: "/Aura-Herbal-Store/images/Lebaso.jpeg" },
 ];
 
 const RAND = (n) => `R${n.toFixed(2)}`;
