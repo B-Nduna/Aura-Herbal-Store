@@ -215,15 +215,34 @@ function Header({ page, setPage, cartCount, setCartOpen }) {
   );
 }
 
+// Shows a soft pulsing placeholder until the image has actually finished
+// loading, then fades the real image in. Used anywhere a larger photo is
+// shown (product cards, hero, about) so slow-loading images never leave a
+// blank/broken-looking gap.
+function ImageWithLoader({ src, alt, className = "" }) {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <div className="relative w-full h-full overflow-hidden">
+      {!loaded && <div className="absolute inset-0 bg-rose-100 animate-pulse" />}
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        onLoad={() => setLoaded(true)}
+        className={`${className} transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
+      />
+    </div>
+  );
+}
+
 function ProductCard({ product, onAdd, added }) {
   return (
     <div className="bg-white rounded-2xl border border-rose-100 shadow-sm hover:shadow-md transition-shadow flex flex-col overflow-hidden">
       <div className="aspect-[4/3] w-full overflow-hidden bg-rose-50">
-        <img
+        <ImageWithLoader
           src={product.image}
           alt={product.name}
           className="w-full h-full object-cover"
-          loading="lazy"
         />
       </div>
       <div className="p-7 flex flex-col flex-grow">
@@ -300,7 +319,7 @@ function HomePage({ setPage, addToCart }) {
           <div className="relative">
             <div className="absolute -inset-4 bg-rose-100 rounded-[2rem] -z-10 hidden sm:block" />
             <div className="aspect-[4/3] md:aspect-square rounded-3xl overflow-hidden shadow-lg">
-              <img src={asset("images/AuraSalts_Family.jpg")} alt="Aura Herbal Store salt jars" className="w-full h-full object-cover" />
+              <ImageWithLoader src={asset("images/AuraSalts_Family.jpg")} alt="Aura Herbal Store salt jars" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
@@ -390,7 +409,7 @@ function AboutPage({ setPage }) {
         <div className="relative">
           <div className="absolute -inset-4 bg-rose-50 rounded-[2rem] -z-10 hidden sm:block" />
           <div className="aspect-[4/5] rounded-3xl relative overflow-hidden shadow-lg">
-            <img src={asset("images/about.jpg")} alt="Dried herbs used in Aura Herbal blends" className="w-full h-full object-cover" />
+            <ImageWithLoader src={asset("images/about.jpg")} alt="Dried herbs used in Aura Herbal blends" className="w-full h-full object-cover" />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-stone-900/70 to-transparent px-6 pt-10 pb-6 text-xs uppercase tracking-widest text-white">
               Salts, measured by hand
             </div>
