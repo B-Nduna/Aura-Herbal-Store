@@ -4,16 +4,10 @@ import {
   Phone, Sparkles, MessageCircle
 } from "lucide-react";
 
-// Store WhatsApp number in international format, digits only (no +, no
-// spaces, no leading 0). Update this one place if the client's number
-// changes — it's used for both the footer link and the order flow.
 const WHATSAPP_NUMBER = "27767153370";
 
 const RAND = (n) => `R${n.toFixed(2)}`;
 
-// lucide-react removed brand/logo icons (Instagram, Facebook, etc.) in v1.0 —
-// using small local SVGs here instead so the footer icons can't break again
-// on a future lucide-react update.
 function InstagramIcon({ size = 14 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -32,10 +26,6 @@ function FacebookIcon({ size = 14 }) {
   );
 }
 
-// Product catalogue, organised into the same sections as Aura's own price
-// list. Items without a dedicated photo yet use a neutral placeholder image
-// (picsum.photos) until real product/service photos are supplied — swap the
-// `image` field for each as photos come in.
 const CATEGORIES = [
   {
     id: "consultations",
@@ -115,8 +105,7 @@ const CATEGORIES = [
   },
 ];
 
-// Flat list, handy for the homepage "Featured" strip and the cart/checkout,
-// which don't care about category grouping.
+
 const ALL_ITEMS = CATEGORIES.flatMap((cat) => cat.items.map((it) => ({ ...it, category: cat.label })));
 
 function useGoogleFonts() {
