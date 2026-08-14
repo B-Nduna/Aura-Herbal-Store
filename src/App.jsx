@@ -1,26 +1,17 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import {
   ShoppingBag, X, Plus, Minus, Menu,
-  Phone, Sparkles, MessageCircle
+  Phone, Sparkles, MessageCircle,
+  Moon, Users, Video, Home as HomeIcon, Waves, Car, Briefcase,
+  RotateCcw, Heart, Baby, HeartHandshake, Flower2,
 } from "lucide-react";
 
-// Store WhatsApp number in international format, digits only (no +, no
-// spaces, no leading 0). Update this one place if the client's number
-// changes — it's used for both the footer link and the order flow.
 const WHATSAPP_NUMBER = "27767153370";
 
 const RAND = (n) => `R${n.toFixed(2)}`;
 
-// Resolves a path under /public correctly whether the site is served at the
-// domain root (local dev) or under a subpath like GitHub Pages'
-// /Aura-Herbal-Store/ — a plain "/images/foo.jpg" string is NOT rewritten by
-// Vite's `base` config automatically, so every public asset path goes
-// through this helper instead of being hardcoded.
 const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
 
-// lucide-react removed brand/logo icons (Instagram, Facebook, etc.) in v1.0 —
-// using small local SVGs here instead so the footer icons can't break again
-// on a future lucide-react update.
 function InstagramIcon({ size = 14 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -39,33 +30,18 @@ function FacebookIcon({ size = 14 }) {
   );
 }
 
-// Product catalogue, organised into the same sections as Aura's own price
-// list. Items without a dedicated photo yet use a neutral placeholder image
-// (picsum.photos) until real product/service photos are supplied — swap the
-// `image` field for each as photos come in.
-const CATEGORIES = [
-  {
-    id: "consultations",
-    label: "Consultations",
-    blurb: "Book time with Aura for guidance and readings.",
-    items: [
-      { id: "dream-interpretation", name: "Dream Interpretation", price: 250, image: "https://picsum.photos/seed/dream-interpretation/600/750" },
-      { id: "face-consultation", name: "Face to Face Consultation", price: 400, image: "https://picsum.photos/seed/face-consultation/600/750" },
-      { id: "telephonic-consultation", name: "Telephonic Consultation", price: 450, image: "https://picsum.photos/seed/telephonic-consultation/600/750" },
-      { id: "virtual-consultation", name: "Virtual Consultation", price: 550, image: "https://picsum.photos/seed/virtual-consultation/600/750" },
-      { id: "family-consultation", name: "Family Consultation (4pax)", price: 1050, image: "https://picsum.photos/seed/family-consultation/600/750" },
-    ],
-  },
+const SHOP_CATEGORIES = [
   {
     id: "salts",
-    label: "Aura Herbal Salts",
-    blurb: "Hand-measured salts for cleansing, luck, attraction and protection.",
+    label: "Aura Herbal Salts & Teas",
+    blurb: "Hand-measured salts and teas for cleansing, luck, attraction and protection.",
     items: [
-      { id: "aura", name: "Aura Salts", price: 200, desc: "Our foundational blend — clears stagnant energy and resets the space around you.", image: asset("images/AuraCleanser.jpg") },
-      { id: "lucky", name: "Lucky Salts", price: 250, desc: "A brighter blend carried for fortune, opportunity and good timing.", image: asset("images/LuckySalts.jpg") },
-      { id: "attraction", name: "Attraction Salts", price: 350, desc: "Warms the space you enter — for connection, charm and drawing people close.", image: asset("images/ProtectionSalts.jpg") },
-      { id: "protection", name: "Protection Salts", price: 350, desc: "A grounding blend to hold at your door or on your person for safekeeping.", image: asset("images/Proctection_Salts.jpg") },
+      { id: "aura", name: "Aura Salts", price: 200, desc: "Our foundational blend — clears stagnant energy and resets the space around you.", image: asset("images/AuraCleanser.webp") },
+      { id: "lucky", name: "Lucky Salts", price: 250, desc: "A brighter blend carried for fortune, opportunity and good timing.", image: asset("images/LuckySalts.webp") },
+      { id: "attraction", name: "Attraction Salts", price: 350, desc: "Warms the space you enter — for connection, charm and drawing people close.", image: asset("images/ProtectionSalts.webp") },
+      { id: "protection", name: "Protection Salts", price: 350, desc: "A grounding blend to hold at your door or on your person for safekeeping.", image: asset("images/Proctection_Salts.webp") },
       { id: "aura-soap", name: "Aura Soap", price: 155, image: "https://picsum.photos/seed/aura-soap/600/750" },
+      { id: "fertility-tea", name: "Fertility Tea", price: 350, desc: "A gentle herbal tea steeped for nurturing, patience and new beginnings.", image: asset("images/Fertility_kit.webp") },
     ],
   },
   {
@@ -76,25 +52,7 @@ const CATEGORIES = [
       { id: "money-oil", name: "Money Oil", price: 175, image: "https://picsum.photos/seed/money-oil/600/750" },
       { id: "rub-rub", name: "Rub Rub", price: 105, image: "https://picsum.photos/seed/rub-rub/600/750" },
       { id: "lip-balm", name: "Aura Lip Balm", price: 75, image: "https://picsum.photos/seed/lip-balm/600/750" },
-      { id: "lebaso", name: "Lebaso la Business", price: 750, desc: "A traditional charm blend carried for growth, income and steady prosperity.", image: asset("images/Lebaso.jpeg") },
-    ],
-  },
-  {
-    id: "services",
-    label: "Services",
-    blurb: "Cleansing and care services, arranged directly with Aura.",
-    items: [
-      { id: "fertility-tea", name: "Fertility Tea", price: 350, desc: "A gentle herbal tea steeped for nurturing, patience and new beginnings.", image: asset("images/Fertility_kit.jpg") },
-      { id: "bata", name: "Bata", price: 1200, image: "https://picsum.photos/seed/bata/600/750" },
-      { id: "river-cleansing", name: "River Cleansing", price: 2000, image: "https://picsum.photos/seed/river-cleansing/600/750" },
-      { id: "car-cleansing", name: "Car Cleansing", price: 3500, image: "https://picsum.photos/seed/car-cleansing/600/750" },
-      { id: "house-cleansing", name: "House Cleansing", price: 5500, image: "https://picsum.photos/seed/house-cleansing/600/750" },
-      { id: "business-cleansing", name: "Business Cleansing", price: 5000, fromPrice: true, image: "https://picsum.photos/seed/business-cleansing/600/750" },
-      { id: "back-to-sender", name: "Back to Sender", price: 3000, image: "https://picsum.photos/seed/back-to-sender/600/750" },
-      { id: "wound-care", name: "Wound Care", price: 600, image: "https://picsum.photos/seed/wound-care/600/750" },
-      { id: "pregnancy-care", name: "Pregnancy Care", price: 1200, image: "https://picsum.photos/seed/pregnancy-care/600/750" },
-      { id: "bring-back-lover", name: "Bring Back Lost Lover", price: 2500, image: "https://picsum.photos/seed/bring-back-lover/600/750" },
-      { id: "full-body-massage", name: "Full Body Massage (females only)", price: 800, image: "https://picsum.photos/seed/full-body-massage/600/750" },
+      { id: "lebaso", name: "Lebaso la Business", price: 750, desc: "A traditional charm blend carried for growth, income and steady prosperity.", image: asset("images/Lebaso.webp") },
     ],
   },
   {
@@ -121,10 +79,40 @@ const CATEGORIES = [
     ],
   },
 ];
+const SHOP_ITEMS = SHOP_CATEGORIES.flatMap((cat) => cat.items.map((it) => ({ ...it, category: cat.label })));
 
-// Flat list, handy for the homepage "Featured" strip and the cart/checkout,
-// which don't care about category grouping.
-const ALL_ITEMS = CATEGORIES.flatMap((cat) => cat.items.map((it) => ({ ...it, category: cat.label })));
+const BOOKING_CATEGORIES = [
+  {
+    id: "consultations",
+    label: "Consultations",
+    blurb: "Book time with Aura for guidance and readings.",
+    items: [
+      { id: "dream-interpretation", name: "Dream Interpretation", price: 250, Icon: Moon },
+      { id: "face-consultation", name: "Face to Face Consultation", price: 400, Icon: Users },
+      { id: "telephonic-consultation", name: "Telephonic Consultation", price: 450, Icon: Phone },
+      { id: "virtual-consultation", name: "Virtual Consultation", price: 550, Icon: Video },
+      { id: "family-consultation", name: "Family Consultation (4pax)", price: 1050, Icon: HomeIcon },
+    ],
+  },
+  {
+    id: "services",
+    label: "Services",
+    blurb: "Traditional cleansing and care services, arranged directly with Aura.",
+    items: [
+      { id: "bata", name: "Bata", price: 1200, Icon: Flower2 },
+      { id: "river-cleansing", name: "River Cleansing", price: 2000, Icon: Waves },
+      { id: "car-cleansing", name: "Car Cleansing", price: 3500, Icon: Car },
+      { id: "house-cleansing", name: "House Cleansing", price: 5500, Icon: HomeIcon },
+      { id: "business-cleansing", name: "Business Cleansing", price: 5000, fromPrice: true, Icon: Briefcase },
+      { id: "back-to-sender", name: "Back to Sender", price: 3000, Icon: RotateCcw },
+      { id: "wound-care", name: "Wound Care", price: 600, Icon: Heart },
+      { id: "pregnancy-care", name: "Pregnancy Care", price: 1200, Icon: Baby },
+      { id: "bring-back-lover", name: "Bring Back Lost Lover", price: 2500, Icon: HeartHandshake },
+      { id: "full-body-massage", name: "Full Body Massage (females only)", price: 800, Icon: Sparkles },
+    ],
+  },
+];
+const BOOKING_ITEMS = BOOKING_CATEGORIES.flatMap((cat) => cat.items.map((it) => ({ ...it, category: cat.label })));
 
 function useGoogleFonts() {
   useEffect(() => {
@@ -141,6 +129,41 @@ const serif = { fontFamily: "'Fraunces', serif" };
 const script = { fontFamily: "'Fraunces', serif", fontStyle: "italic" };
 const sans = { fontFamily: "'Work Sans', sans-serif" };
 
+function Reveal({ children, className = "", delay = 0 }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVisible(true);
+      return;
+    }
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} ${className}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
+}
+
 function PetalDivider() {
   return (
     <div className="flex items-center justify-center gap-4 py-2">
@@ -151,11 +174,28 @@ function PetalDivider() {
   );
 }
 
+function ImageWithLoader({ src, alt, className = "" }) {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <div className="relative w-full h-full overflow-hidden">
+      {!loaded && <div className="absolute inset-0 bg-rose-100 animate-pulse" />}
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        onLoad={() => setLoaded(true)}
+        className={`${className} transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
+      />
+    </div>
+  );
+}
+
 function Header({ page, setPage, cartCount, setCartOpen }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const links = [
     { id: "home", label: "Home" },
-    { id: "products", label: "Products" },
+    { id: "book", label: "Book" },
+    { id: "shop", label: "Shop" },
     { id: "about", label: "About" },
     { id: "contact", label: "Contact" },
   ];
@@ -164,10 +204,10 @@ function Header({ page, setPage, cartCount, setCartOpen }) {
     <header className="sticky top-0 z-40 bg-rose-50/90 backdrop-blur border-b border-rose-100">
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <button onClick={() => go("home")} className="flex items-center gap-3">
-          <img src={asset("images/Aura.png")} alt="Aura Herbal Store" className="h-14 w-auto" />
+          <img src={asset("images/Aura.webp")} alt="Aura Herbal Store" className="h-14 w-auto" />
         </button>
 
-        <nav className="hidden md:flex gap-9">
+        <nav className="hidden md:flex gap-8">
           {links.map((l) => (
             <button
               key={l.id}
@@ -215,26 +255,6 @@ function Header({ page, setPage, cartCount, setCartOpen }) {
   );
 }
 
-// Shows a soft pulsing placeholder until the image has actually finished
-// loading, then fades the real image in. Used anywhere a larger photo is
-// shown (product cards, hero, about) so slow-loading images never leave a
-// blank/broken-looking gap.
-function ImageWithLoader({ src, alt, className = "" }) {
-  const [loaded, setLoaded] = useState(false);
-  return (
-    <div className="relative w-full h-full overflow-hidden">
-      {!loaded && <div className="absolute inset-0 bg-rose-100 animate-pulse" />}
-      <img
-        src={src}
-        alt={alt}
-        loading="lazy"
-        onLoad={() => setLoaded(true)}
-        className={`${className} transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
-      />
-    </div>
-  );
-}
-
 function ProductCard({ product, onAdd, added }) {
   return (
     <div className="bg-white rounded-2xl border border-rose-100 shadow-sm hover:shadow-md transition-shadow flex flex-col overflow-hidden">
@@ -253,10 +273,7 @@ function ProductCard({ product, onAdd, added }) {
         {product.desc && <p className="text-sm text-stone-500 mb-6 flex-grow leading-relaxed">{product.desc}</p>}
         {!product.desc && <div className="flex-grow mb-4" />}
         <div className="flex items-center justify-between pt-5 border-t border-rose-50">
-          <span style={serif} className="text-stone-800 text-lg">
-            {product.fromPrice && <span className="text-xs text-stone-400 mr-1" style={sans}>from</span>}
-            {RAND(product.price)}
-          </span>
+          <span style={serif} className="text-stone-800 text-lg">{RAND(product.price)}</span>
           <button
             onClick={() => onAdd(product)}
             className={`text-xs uppercase tracking-wide px-4 py-2.5 rounded-full border transition-colors ${
@@ -273,6 +290,32 @@ function ProductCard({ product, onAdd, added }) {
   );
 }
 
+function BookingCard({ item }) {
+  const message = `Hi Aura Herbal Store! I'd like to book: ${item.name} (${item.fromPrice ? "from " : ""}${RAND(item.price)}). Could we arrange a time?`;
+  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  const Icon = item.Icon;
+  return (
+    <div className="bg-white rounded-2xl border border-rose-100 shadow-sm hover:shadow-md transition-shadow p-7 flex flex-col items-start">
+      <div className="w-12 h-12 rounded-full bg-rose-50 flex items-center justify-center text-rose-400 mb-5">
+        <Icon size={20} />
+      </div>
+      <h3 style={serif} className="text-lg text-stone-800 mb-1 font-medium">{item.name}</h3>
+      <p style={serif} className="text-stone-600 mb-5">
+        {item.fromPrice && <span className="text-xs text-stone-400 mr-1" style={sans}>from</span>}
+        {RAND(item.price)}
+      </p>
+      <a
+        href={waUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-auto inline-flex items-center gap-2 text-xs uppercase tracking-wide px-4 py-2.5 rounded-full border border-rose-300 text-rose-500 hover:bg-rose-400 hover:text-white hover:border-rose-400 transition-colors"
+      >
+        <MessageCircle size={14} /> Book
+      </a>
+    </div>
+  );
+}
+
 function HomePage({ setPage, addToCart }) {
   const [justAdded, setJustAdded] = useState(null);
   const handleAdd = (product) => {
@@ -280,12 +323,13 @@ function HomePage({ setPage, addToCart }) {
     setJustAdded(product.id);
     setTimeout(() => setJustAdded(null), 1400);
   };
-  const featured = ALL_ITEMS.filter((it) => ["aura", "lucky", "lebaso"].includes(it.id));
+  const featuredProducts = SHOP_ITEMS.filter((it) => ["aura", "lucky", "lebaso"].includes(it.id));
+  const featuredServices = BOOKING_ITEMS.filter((it) => ["dream-interpretation", "telephonic-consultation", "family-consultation"].includes(it.id));
   return (
     <>
       <section className="relative pt-16 pb-20 px-6 overflow-hidden bg-gradient-to-b from-rose-50 to-transparent">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center relative">
-          <div>
+          <Reveal>
             <div className="inline-flex items-center gap-3 text-xs uppercase tracking-widest text-rose-400 mb-6 font-medium">
               <span className="w-5 h-px bg-rose-300" /> Small-batch herbal &amp; self-care rituals
             </div>
@@ -298,11 +342,11 @@ function HomePage({ setPage, addToCart }) {
               services — for cleansing, protection, attraction and prosperity.
             </p>
             <div className="flex gap-4 flex-wrap">
-              <button onClick={() => setPage("products")} className="bg-stone-800 hover:bg-stone-700 text-rose-50 text-xs uppercase tracking-widest px-7 py-3.5 font-medium rounded-full transition-colors">
-                Shop the collection
+              <button onClick={() => setPage("book")} className="bg-stone-800 hover:bg-stone-700 text-rose-50 text-xs uppercase tracking-widest px-7 py-3.5 font-medium rounded-full transition-colors">
+                Book a consultation
               </button>
-              <button onClick={() => setPage("about")} className="border border-stone-300 hover:border-stone-800 hover:text-stone-900 text-stone-700 text-xs uppercase tracking-widest px-7 py-3.5 rounded-full transition-colors">
-                Our practice
+              <button onClick={() => setPage("shop")} className="border border-stone-300 hover:border-stone-800 hover:text-stone-900 text-stone-700 text-xs uppercase tracking-widest px-7 py-3.5 rounded-full transition-colors">
+                Shop the collection
               </button>
             </div>
 
@@ -314,39 +358,62 @@ function HomePage({ setPage, addToCart }) {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
 
-          <div className="relative">
+          <Reveal delay={150} className="relative">
             <div className="absolute -inset-4 bg-rose-100 rounded-[2rem] -z-10 hidden sm:block" />
             <div className="aspect-[4/3] md:aspect-square rounded-3xl overflow-hidden shadow-lg">
-              <ImageWithLoader src={asset("images/AuraSalts_Family.jpg")} alt="Aura Herbal Store salt jars" className="w-full h-full object-cover" />
+              <ImageWithLoader src={asset("images/AuraSalts_Family.webp")} alt="Aura Herbal Store salt jars" className="w-full h-full object-cover" />
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <PetalDivider />
 
-      <section className="py-16 px-6 text-center">
+      <Reveal className="py-16 px-6 text-center">
         <p style={script} className="max-w-xl mx-auto text-stone-600 text-2xl leading-relaxed">
           "Every salt is measured, blessed and packed by hand — a small ritual before it begins yours."
         </p>
+      </Reveal>
+
+      <section className="py-16 px-6 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <Reveal className="flex justify-between items-end flex-wrap gap-4 mb-12">
+            <div>
+              <div className="text-xs uppercase tracking-widest text-rose-400 mb-3 font-medium">Consultations &amp; services</div>
+              <h2 style={serif} className="text-3xl md:text-4xl text-stone-800">Featured Services</h2>
+            </div>
+            <button onClick={() => setPage("book")} className="text-xs uppercase tracking-widest text-stone-700 border-b border-stone-800 pb-1 hover:text-rose-500 hover:border-rose-400 transition-colors">
+              View all services
+            </button>
+          </Reveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredServices.map((item, i) => (
+              <Reveal key={item.id} delay={i * 90}>
+                <BookingCard item={item} />
+              </Reveal>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="py-16 px-6 bg-rose-50">
         <div className="max-w-6xl mx-auto">
-          <div className="flex justify-between items-end flex-wrap gap-4 mb-12">
+          <Reveal className="flex justify-between items-end flex-wrap gap-4 mb-12">
             <div>
               <div className="text-xs uppercase tracking-widest text-rose-400 mb-3 font-medium">Shop the collection</div>
               <h2 style={serif} className="text-3xl md:text-4xl text-stone-800">Featured Items</h2>
             </div>
-            <button onClick={() => setPage("products")} className="text-xs uppercase tracking-widest text-stone-700 border-b border-stone-800 pb-1 hover:text-rose-500 hover:border-rose-400 transition-colors">
+            <button onClick={() => setPage("shop")} className="text-xs uppercase tracking-widest text-stone-700 border-b border-stone-800 pb-1 hover:text-rose-500 hover:border-rose-400 transition-colors">
               View all products
             </button>
-          </div>
+          </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featured.map((p) => (
-              <ProductCard key={p.id} product={p} onAdd={handleAdd} added={justAdded === p.id} />
+            {featuredProducts.map((p, i) => (
+              <Reveal key={p.id} delay={i * 90}>
+                <ProductCard product={p} onAdd={handleAdd} added={justAdded === p.id} />
+              </Reveal>
             ))}
           </div>
         </div>
@@ -355,7 +422,7 @@ function HomePage({ setPage, addToCart }) {
   );
 }
 
-function ProductsPage({ addToCart }) {
+function ShopPage({ addToCart }) {
   const [justAdded, setJustAdded] = useState(null);
   const handleAdd = (product) => {
     addToCart(product);
@@ -370,9 +437,9 @@ function ProductsPage({ addToCart }) {
       <div className="max-w-6xl mx-auto">
         <div className="mb-12">
           <div className="text-xs uppercase tracking-widest text-rose-400 mb-3 font-medium">Shop the collection</div>
-          <h2 style={serif} className="text-3xl md:text-4xl text-stone-800 mb-6">All Products &amp; Services</h2>
+          <h2 style={serif} className="text-3xl md:text-4xl text-stone-800 mb-6">Products</h2>
           <div className="flex gap-2 flex-wrap">
-            {CATEGORIES.map((cat) => (
+            {SHOP_CATEGORIES.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => scrollToCategory(cat.id)}
@@ -384,15 +451,63 @@ function ProductsPage({ addToCart }) {
           </div>
         </div>
 
-        {CATEGORIES.map((cat) => (
+        {SHOP_CATEGORIES.map((cat) => (
           <div key={cat.id} id={`cat-${cat.id}`} className="mb-16 scroll-mt-24">
-            <div className="mb-6">
+            <Reveal className="mb-6">
               <h3 style={serif} className="text-2xl text-stone-800">{cat.label}</h3>
               <p className="text-stone-500 text-sm mt-1">{cat.blurb}</p>
-            </div>
+            </Reveal>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {cat.items.map((p) => (
-                <ProductCard key={p.id} product={p} onAdd={handleAdd} added={justAdded === p.id} />
+              {cat.items.map((p, i) => (
+                <Reveal key={p.id} delay={(i % 3) * 90}>
+                  <ProductCard product={p} onAdd={handleAdd} added={justAdded === p.id} />
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function BookPage() {
+  const scrollToCategory = (id) => {
+    document.getElementById(`bookcat-${id}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  return (
+    <section className="py-20 px-6 bg-white">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-12">
+          <div className="text-xs uppercase tracking-widest text-rose-400 mb-3 font-medium">Consultations &amp; services</div>
+          <h2 style={serif} className="text-3xl md:text-4xl text-stone-800 mb-3">Book with Aura</h2>
+          <p className="text-stone-500 text-sm max-w-lg mb-6">
+            These are appointments, not products — tap "Book" on anything below and it opens WhatsApp with your request ready to send, so Aura can confirm a time with you directly.
+          </p>
+          <div className="flex gap-2 flex-wrap">
+            {BOOKING_CATEGORIES.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => scrollToCategory(cat.id)}
+                className="text-xs uppercase tracking-widest px-4 py-2 rounded-full border border-rose-200 text-stone-600 hover:border-rose-400 hover:text-rose-500 transition-colors"
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {BOOKING_CATEGORIES.map((cat) => (
+          <div key={cat.id} id={`bookcat-${cat.id}`} className="mb-16 scroll-mt-24">
+            <Reveal className="mb-6">
+              <h3 style={serif} className="text-2xl text-stone-800">{cat.label}</h3>
+              <p className="text-stone-500 text-sm mt-1">{cat.blurb}</p>
+            </Reveal>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {cat.items.map((item, i) => (
+                <Reveal key={item.id} delay={(i % 3) * 90}>
+                  <BookingCard item={item} />
+                </Reveal>
               ))}
             </div>
           </div>
@@ -406,16 +521,16 @@ function AboutPage({ setPage }) {
   return (
     <section className="py-20 px-6 bg-white">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-        <div className="relative">
+        <Reveal className="relative">
           <div className="absolute -inset-4 bg-rose-50 rounded-[2rem] -z-10 hidden sm:block" />
           <div className="aspect-[4/5] rounded-3xl relative overflow-hidden shadow-lg">
-            <ImageWithLoader src={asset("images/about.jpg")} alt="Dried herbs used in Aura Herbal blends" className="w-full h-full object-cover" />
+            <ImageWithLoader src={asset("images/about.webp")} alt="Dried herbs used in Aura Herbal blends" className="w-full h-full object-cover" />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-stone-900/70 to-transparent px-6 pt-10 pb-6 text-xs uppercase tracking-widest text-white">
               Salts, measured by hand
             </div>
           </div>
-        </div>
-        <div>
+        </Reveal>
+        <Reveal delay={150}>
           <div className="text-xs uppercase tracking-widest text-rose-400 mb-3 font-medium">Our story</div>
           <h2 style={serif} className="text-3xl text-stone-800 mb-5">About Aura Herbals</h2>
           <p className="text-stone-500 mb-4 leading-relaxed">
@@ -438,7 +553,7 @@ function AboutPage({ setPage }) {
           <button onClick={() => setPage("contact")} className="mt-8 border border-stone-300 hover:border-stone-800 hover:text-stone-900 text-stone-700 text-xs uppercase tracking-widest px-7 py-3.5 rounded-full transition-colors">
             Get in touch
           </button>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -669,14 +784,14 @@ function Footer({ setPage }) {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-wrap justify-between gap-10 pb-10 border-b border-rose-100 mb-7">
           <div className="max-w-xs">
-            <img src={asset("images/Logo.png")} alt="Aura Herbal Store" className="h-14 w-auto mb-3" />
+            <img src={asset("images/Logo.webp")} alt="Aura Herbal Store" className="h-14 w-auto mb-3" />
             <p className="text-sm text-stone-500">Herbal salts, oils and teas, plus consultations and traditional cleansing services — made with intention.</p>
           </div>
           <div className="flex gap-16 flex-wrap">
             <div>
               <h4 className="text-xs uppercase tracking-widest text-rose-400 mb-4 font-medium">Explore</h4>
-              {["home", "products", "about"].map((id) => (
-                <button key={id} onClick={() => setPage(id)} className="block text-sm text-stone-500 hover:text-stone-800 mb-2 capitalize">{id}</button>
+              {[["home", "Home"], ["book", "Book"], ["shop", "Shop"], ["about", "About"]].map(([id, label]) => (
+                <button key={id} onClick={() => setPage(id)} className="block text-sm text-stone-500 hover:text-stone-800 mb-2">{label}</button>
               ))}
             </div>
             <div>
@@ -707,9 +822,6 @@ function Footer({ setPage }) {
 export default function AuraHerbalStore() {
   useGoogleFonts();
 
-  // Real browser history for page nav — pushes a hash entry per page so the
-  // phone/browser back button (and swipe-back gesture) navigates within the
-  // app instead of leaving the site entirely.
   const [page, setPageState] = useState(() => window.location.hash.replace("#", "") || "home");
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
@@ -720,13 +832,10 @@ export default function AuraHerbalStore() {
   }, []);
 
   useEffect(() => {
-    // seed the initial history entry so the very first back-press has
-    // somewhere defined to land, rather than immediately exiting
     window.history.replaceState({ page }, "", `#${page}`);
     const onPopState = (e) => setPageState(e.state?.page || "home");
     window.addEventListener("popstate", onPopState);
     return () => window.removeEventListener("popstate", onPopState);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const addToCart = (product) => {
@@ -759,7 +868,8 @@ export default function AuraHerbalStore() {
       <Header page={page} setPage={setPage} cartCount={cartCount} setCartOpen={setCartOpen} />
 
       {page === "home" && <HomePage setPage={setPage} addToCart={addToCart} />}
-      {page === "products" && <ProductsPage addToCart={addToCart} />}
+      {page === "shop" && <ShopPage addToCart={addToCart} />}
+      {page === "book" && <BookPage />}
       {page === "about" && <AboutPage setPage={setPage} />}
       {page === "contact" && (
         <ContactPage cart={cart} total={total} updateQty={updateQty} removeItem={removeItem} clearCart={clearCart} />

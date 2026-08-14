@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://b-nduna.github.io/Aura-Herbal-Store/sitemap.xml
