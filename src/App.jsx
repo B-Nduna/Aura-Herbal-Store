@@ -11,6 +11,13 @@ const WHATSAPP_NUMBER = "27767153370";
 
 const RAND = (n) => `R${n.toFixed(2)}`;
 
+// Resolves a path under /public correctly whether the site is served at the
+// domain root (local dev) or under a subpath like GitHub Pages'
+// /Aura-Herbal-Store/ — a plain "/images/foo.jpg" string is NOT rewritten by
+// Vite's `base` config automatically, so every public asset path goes
+// through this helper instead of being hardcoded.
+const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
+
 // lucide-react removed brand/logo icons (Instagram, Facebook, etc.) in v1.0 —
 // using small local SVGs here instead so the footer icons can't break again
 // on a future lucide-react update.
@@ -54,10 +61,10 @@ const CATEGORIES = [
     label: "Aura Herbal Salts",
     blurb: "Hand-measured salts for cleansing, luck, attraction and protection.",
     items: [
-      { id: "aura", name: "Aura Salts", price: 200, desc: "Our foundational blend — clears stagnant energy and resets the space around you.", image: "/images/AuraCleanser.jpg" },
-      { id: "lucky", name: "Lucky Salts", price: 250, desc: "A brighter blend carried for fortune, opportunity and good timing.", image: "/images/LuckySalts.jpg" },
-      { id: "attraction", name: "Attraction Salts", price: 350, desc: "Warms the space you enter — for connection, charm and drawing people close.", image: "/images/ProtectionSalts.jpg" },
-      { id: "protection", name: "Protection Salts", price: 350, desc: "A grounding blend to hold at your door or on your person for safekeeping.", image: "/images/Proctection_Salts.jpg" },
+      { id: "aura", name: "Aura Salts", price: 200, desc: "Our foundational blend — clears stagnant energy and resets the space around you.", image: asset("images/AuraCleanser.jpg") },
+      { id: "lucky", name: "Lucky Salts", price: 250, desc: "A brighter blend carried for fortune, opportunity and good timing.", image: asset("images/LuckySalts.jpg") },
+      { id: "attraction", name: "Attraction Salts", price: 350, desc: "Warms the space you enter — for connection, charm and drawing people close.", image: asset("images/ProtectionSalts.jpg") },
+      { id: "protection", name: "Protection Salts", price: 350, desc: "A grounding blend to hold at your door or on your person for safekeeping.", image: asset("images/Proctection_Salts.jpg") },
       { id: "aura-soap", name: "Aura Soap", price: 155, image: "https://picsum.photos/seed/aura-soap/600/750" },
     ],
   },
@@ -69,7 +76,7 @@ const CATEGORIES = [
       { id: "money-oil", name: "Money Oil", price: 175, image: "https://picsum.photos/seed/money-oil/600/750" },
       { id: "rub-rub", name: "Rub Rub", price: 105, image: "https://picsum.photos/seed/rub-rub/600/750" },
       { id: "lip-balm", name: "Aura Lip Balm", price: 75, image: "https://picsum.photos/seed/lip-balm/600/750" },
-      { id: "lebaso", name: "Lebaso la Business", price: 750, desc: "A traditional charm blend carried for growth, income and steady prosperity.", image: "/images/Lebaso.jpeg" },
+      { id: "lebaso", name: "Lebaso la Business", price: 750, desc: "A traditional charm blend carried for growth, income and steady prosperity.", image: asset("images/Lebaso.jpeg") },
     ],
   },
   {
@@ -77,7 +84,7 @@ const CATEGORIES = [
     label: "Services",
     blurb: "Cleansing and care services, arranged directly with Aura.",
     items: [
-      { id: "fertility-tea", name: "Fertility Tea", price: 350, desc: "A gentle herbal tea steeped for nurturing, patience and new beginnings.", image: "/images/Fertility_kit.jpg" },
+      { id: "fertility-tea", name: "Fertility Tea", price: 350, desc: "A gentle herbal tea steeped for nurturing, patience and new beginnings.", image: asset("images/Fertility_kit.jpg") },
       { id: "bata", name: "Bata", price: 1200, image: "https://picsum.photos/seed/bata/600/750" },
       { id: "river-cleansing", name: "River Cleansing", price: 2000, image: "https://picsum.photos/seed/river-cleansing/600/750" },
       { id: "car-cleansing", name: "Car Cleansing", price: 3500, image: "https://picsum.photos/seed/car-cleansing/600/750" },
@@ -157,7 +164,7 @@ function Header({ page, setPage, cartCount, setCartOpen }) {
     <header className="sticky top-0 z-40 bg-rose-50/90 backdrop-blur border-b border-rose-100">
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <button onClick={() => go("home")} className="flex items-center gap-3">
-          <img src="/images/Aura.png" alt="Aura Herbal Store" className="h-14 w-auto" />
+          <img src={asset("images/Aura.png")} alt="Aura Herbal Store" className="h-14 w-auto" />
         </button>
 
         <nav className="hidden md:flex gap-9">
@@ -293,7 +300,7 @@ function HomePage({ setPage, addToCart }) {
           <div className="relative">
             <div className="absolute -inset-4 bg-rose-100 rounded-[2rem] -z-10 hidden sm:block" />
             <div className="aspect-[4/3] md:aspect-square rounded-3xl overflow-hidden shadow-lg">
-              <img src="/images/AuraSalts_Family.jpg" alt="Aura Herbal Store salt jars" className="w-full h-full object-cover" />
+              <img src={asset("images/AuraSalts_Family.jpg")} alt="Aura Herbal Store salt jars" className="w-full h-full object-cover" />
             </div>
           </div>
         </div>
@@ -383,7 +390,7 @@ function AboutPage({ setPage }) {
         <div className="relative">
           <div className="absolute -inset-4 bg-rose-50 rounded-[2rem] -z-10 hidden sm:block" />
           <div className="aspect-[4/5] rounded-3xl relative overflow-hidden shadow-lg">
-            <img src="/images/about.jpg" alt="Dried herbs used in Aura Herbal blends" className="w-full h-full object-cover" />
+            <img src={asset("images/about.jpg")} alt="Dried herbs used in Aura Herbal blends" className="w-full h-full object-cover" />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-stone-900/70 to-transparent px-6 pt-10 pb-6 text-xs uppercase tracking-widest text-white">
               Salts, measured by hand
             </div>
@@ -643,7 +650,7 @@ function Footer({ setPage }) {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-wrap justify-between gap-10 pb-10 border-b border-rose-100 mb-7">
           <div className="max-w-xs">
-            <img src="/images/Logo.png" alt="Aura Herbal Store" className="h-14 w-auto mb-3" />
+            <img src={asset("images/Logo.png")} alt="Aura Herbal Store" className="h-14 w-auto mb-3" />
             <p className="text-sm text-stone-500">Herbal salts, oils and teas, plus consultations and traditional cleansing services — made with intention.</p>
           </div>
           <div className="flex gap-16 flex-wrap">
